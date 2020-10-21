@@ -1,0 +1,91 @@
+---
+title: "Faraway - Chapter 1"
+author: "J. A. Kilgallen"
+date: "10/21/2020"
+output: pdf_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Linear Models - Chapter 1 Exercises
+## Question 1
+The following table represents a summary of data collected to study teenage gambling in Britain.
+```{r q1}
+library(faraway)
+data(teengamb)
+summary(teengamb)
+```
+We can see from this table that there were approximately 2 females for every three males in the study, and that the median amount of money spent gambling was £6. We can also give a graphical summary of some aspects of the data.In the following plot the x axis represents gender (0 for male, 1 for female), and the y axis shows the amount of money spent on gambling. 
+```{r}
+plot(teengamb$gamble ~ factor(teengamb$sex))
+```
+It can be easily observed that males on average spend much more on gambling then females. One male individual even spent £150.
+
+## Question 2
+
+The following table represents a summary of data collected to analyse the distribution of wages in the US in 1988.
+
+```{r}
+data("uswages")
+summary(uswages)
+```
+We can see from the table that the mean wage was $608.12, and that there were only two categories given for race. We may also summarise some aspects of this data graphically. The following plot shows the relationship between education and wage. The x axis represents the number of years of education the person recieved, and the y axis the persons wage in dollars.
+
+```{r}
+plot(uswages$wage ~ uswages$educ)
+abline(lm(uswages$wage ~ uswages$educ), col="red")
+```
+We can see hear that there is a definite positive correlation between how educated an individual is and their wage.
+
+## Question 3
+
+The following table represents a summary of data collected to study prostate cancer patients due to receive a radical prostatectomy.
+```{r}
+data("prostate")
+summary(prostate)
+```
+
+We can see from the table that the median age of the patients was 65 years, and the mean of the log of their weights was 3.653. We may also summarise some aspects of this data graphically. The following plot shows the relationship between age of the patient and the log of the weight of the patient.
+
+```{r}
+plot(prostate$lcavol ~ prostate$age)
+```
+The above plot shows that their is mild evidence to suggest that the age of the patient is related to the log of the cancer volume.
+
+## Question 4
+
+
+The following table represents a summary of data collected to study the expenditure of public schools.
+
+```{r}
+data(sat)
+summary(sat)
+```
+We can see from this summary that the mean SAT score of the schools is 965.9, and that the mean expenditure per student of schools is $5905. We may also summarise some aspects of this data graphically. The following plot shows the relationship between expenditure per student and SAT test scores/
+
+```{r}
+plot(sat$expend ~ sat$total)
+abline(lm(sat$expend ~ sat$total), col="red")
+```
+This plot shows that there is actually a negative correlation between expenditure and SAT test scores which is surprising.
+
+## Question 5
+
+The following table represents a summary of data collected to study divorces in the US from 1920 to 1996.
+
+```{r}
+data("divusa")
+summary(divusa)
+```
+
+We can see from this table that the mean number of divorces was 13.27, and the number of women working varied from 22.7% to 59.3% during the time span. e may also summarise some aspects of this data graphically. The following plot shows how the divorce rate changed over time. 
+
+```{r}
+data <- data.frame(
+  year = divusa$year,
+  divorce = divusa$divorce
+)
+plot(data, type="l")
+```
+
+As the above plot shows, the number of divorces has fluctuated massively. It rapidly increased from 0 in 1930 to 17 in 1945 and then quickly decreased to 10 in around 1960. Starting in 1960 the divorce rate steadily increased up until 1980 where is began to level off at around 20.
